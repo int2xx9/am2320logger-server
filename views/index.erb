@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=360,initial-scale=1">
+    <title>Logger</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./app.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Logger</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-md-4">
+          <h1>温度</h1>
+          <div class="btn-group tempRangeBtnGroup" role="group">
+            <button class="btn btn-default" id="btnTemp10min">10min</button>
+            <button class="btn btn-default active" id="btnTemp1h">1h</button>
+            <button class="btn btn-default" id="btnTemp1d">1d</button>
+            <button class="btn btn-default" id="btnTemp1w">1w</button>
+            <button class="btn btn-default" id="btnTemp1m">1m</button>
+          </div>
+          <table class="table table-condensed table-hover" style="margin-top: 1rem;">
+            <tbody>
+              <tr>
+                <th>現在</th>
+                <td><span id="tempCur"></span>&#x2103;</td>
+              </tr>
+              <tr>
+                <th>平均</th>
+                <td><span id="tempAvr"></span>&#x2103;</td>
+              </tr>
+              <tr>
+                <th>最大</th>
+                <td><span id="tempMax"></span>&#x2103;</td>
+              </tr>
+              <tr>
+                <th>最小</th>
+                <td><span id="tempMin"></span>&#x2103;</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md8">
+          <div style="width:100%; height:300px;">
+            <canvas id="chartTemp"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 col-md-4">
+          <h1>湿度</h1>
+          <div class="btn-group humidityRangeBtnGroup" role="group">
+            <button class="btn btn-default" id="btnHumidity10min">10min</button>
+            <button class="btn btn-default active" id="btnHumidity1h">1h</button>
+            <button class="btn btn-default" id="btnHumidity1d">1d</button>
+            <button class="btn btn-default" id="btnHumidity1w">1w</button>
+            <button class="btn btn-default" id="btnHumidity1m">1m</button>
+          </div>
+          <br>
+          <table class="table table-condensed table-hover" style="margin-top: 1rem;">
+            <tbody>
+              <tr>
+                <th>現在</th>
+                <td><span id="humidityCur"></span>&#x2103;</td>
+              </tr>
+              <tr>
+                <th>平均</th>
+                <td><span id="humidityAvr"></span>&#x2103;</td>
+              </tr>
+              <tr>
+                <th>最大</th>
+                <td><span id="humidityMax"></span>&#x2103;</td>
+              </tr>
+              <tr>
+                <th>最小</th>
+                <td><span id="humidityMin"></span>&#x2103;</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md8">
+          <div style="width:100%; height:300px;">
+            <canvas id="chartHumidity"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="row text-right">
+        最終取得日時: <span id="lastDatetime"></span>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
+
