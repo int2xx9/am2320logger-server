@@ -23,14 +23,15 @@ get '/log' do
   erb :log, locals: {
     page: page,
     recordCount: $db.query("select count(*) as count from sensor").next[0],
-    records: $db.query("select * from sensor order by created_at desc limit #{MaxPageItem} offset #{(page-1)*MaxPageItem}")
+    records: $db.query("select * from sensor order by created_at desc limit ? offset ?",
+                       MaxPageItem, (page-1)*MaxPageItem)
   }
 end
 
 get '/sensor.json' do
   halt 400 if params[:count] !~ /\A\d+\z/
   count = params[:count].to_i || 60
-  res = $db.query("select * from sensor order by created_at desc limit #{count}")
+  res = $db.query("select * from sensor order by created_at desc limit ?", count)
   content_type :json
   res.to_a
      .reverse
