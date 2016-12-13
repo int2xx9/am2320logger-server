@@ -1,0 +1,27 @@
+<% max_page = (recordCount.to_f/MaxPageItem).ceil %>
+<nav aria-label="Page navigation" class="text-center">
+  <ul class="pagination">
+    <% if page > 1 %>
+      <li>
+        <a href="./log?page=<%= page-1 %>" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+    <% end %>
+    <% Range.new([1, page-3].max, [page+3, max_page].min).each do |p| %>
+      <% if page == p %>
+        <li class="active"><a href="./log?page=<%= p %>"><%= p %></a></li>
+      <% else %>
+        <li><a href="./log?page=<%= p %>"><%= p %></a></li>
+      <% end %>
+    <% end %>
+    <% if page < max_page %>
+      <li>
+        <a href="./log?page=<%= page+1 %>" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+</nav>
+

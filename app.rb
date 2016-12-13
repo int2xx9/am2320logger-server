@@ -5,10 +5,26 @@ require 'sinatra'
 require 'sqlite3'
 require 'erubis'
 
+MaxPageItem=100
+
 $db = SQLite3::Database.new("sensor.sqlite3")
 
 get '/' do
   erb :index
+end
+
+get '/log' do
+  page = 1
+  if params[:page] && params[:page] =~ /\A\d+\z/
+    page = params[:page].to_i
+    page = 1 if page < 1
+  end
+
+  erb :log, locals: {
+    page: page,
+    recordCount: $db.query("select count(*) as count from sensor").next[0],
+    records: $db.query("select * from sensor order by created_at desc limit #{MaxPageItem} offset #{(page-1)*MaxPageItem}")
+  }
 end
 
 get '/sensor.json' do
